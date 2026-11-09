@@ -2,12 +2,12 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-这里解释 handbook 第 7 节使用的模型、restriction 与阶数语法。
+这里解释 [Higgs 进阶练习](../higgs.zh-CN.md)使用的模型、restriction 与阶数语法。
 过程命令在 MadGraph 中手动输入；参数卡、run 卡和 reweight 卡从固定版本教程获取到本地工作区。
 
-### 7.1 本例为什么选这个模型
+## 1. 本例为什么选这个模型
 
-flavor 与电弱输入方案的物理含义见第 2.5–2.6 节。
+flavor 与电弱输入方案的物理含义见背景知识中的[Flavor](../physics/README.zh-CN.md#5-flavor新相互作用怎样区分不同代的费米子) 与 [Scheme](../physics/README.zh-CN.md#6-scheme用哪些测量值确定电弱参数)。
 本练习固定使用：
 
 ```text
@@ -25,7 +25,7 @@ SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
 换输入方案不是单纯改文件名：可观测量、参数关系和 EFT input shifts 的处理必须一致。
 对于研究应用，应根据具体物理问题选择 flavor 与电弱输入方案，并记录相应的模型假设。
 
-### 7.2 Restriction 与参数卡不同
+## 2. Restriction 与参数卡不同
 
 Restriction 在**导入模型**时简化模型。若这时把某个系数限制为零，相关顶点可能被移除，
 之后再在输出参数卡里把系数调大也恢复不了这些顶点。
@@ -38,13 +38,13 @@ Restriction 在**导入模型**时简化模型。若这时把某个系数限制�
 教程 UFO 的导入语法来自 Python 2。过程卡已允许 MadGraph 在**工作副本**中转换为 Python 3 语法。
 原始 `tutorial` 模型保留；本机工作副本已成功转换、导入并用于新事件生成。
 
-### 7.3 阶数选项：先筛选振幅，再筛选振幅平方
+## 3. 阶数选项：先筛选振幅，再筛选振幅平方
 
 下面是 **MadGraph 内部命令的语法示例**。本节先阅读，不在 Bash 执行。
-若以后在 `MG5_aMC>` 中操作，才逐行输入并回车；实际生成步骤见第 8 节：
+若从项目根目录 `~/smeftsim` 启动 MadGraph，可在 `MG5_aMC>` 中逐行输入并回车；实际生成步骤见[生成事件与全部权重](../higgs.zh-CN.md#4-生成事件与全部权重)：
 
 ```text
-import model ./SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
+import model ./work/Material/SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
 generate h > e- ve~ mu+ vm SMHLOOP=0 NP=0 NPprop=0
 ```
 
@@ -52,7 +52,7 @@ generate h > e- ve~ mu+ vm SMHLOOP=0 NP=0 NPprop=0
 接着可以 `display diagrams` 查看图；`output 目录名` 导出过程代码。
 `output` 成功仍没有生成事件，实际积分和事件生成发生在后续 `launch` 阶段。
 
-#### 第一层：一个振幅中允许多少 EFT 插入
+### 第一层：一个振幅中允许多少 EFT 插入
 
 `NP` 是模型对耦合项赋予的计数标签。普通维六顶点、维六输入修正携带相应 NP 阶数，
 SM 项为 `NP=0`。它与 Wilson 系数的数值不同：`NP=1` 不表示 `cHl3=1`。
@@ -77,7 +77,7 @@ $\mathcal M_0$ 是 SM 振幅，$\mathcal M_6$ 已包含 Wilson 系数与 $1/\Lam
 尤其要区分单等号与双等号。这里 `=` 表示上限，`==` 表示精确选择。
 这些规则针对本教程的生成器版本与树级过程；不要未经检查照搬到另一版本的 NLO 语法。
 
-#### 第二层：在振幅平方中保留哪一项
+### 第二层：在振幅平方中保留哪一项
 
 速率来自振幅平方，而不是直接来自振幅：
 
@@ -118,7 +118,7 @@ SM 项为 4、干涉项为 1.2、平方项为 0.09。
 不应只理解为光子顶点数。
 `NPcHl3`、`NPcHW` 等更细的标签可以用于筛选某个算子的贡献。
 
-#### Dummy vertices：用辅助场实现传播子的一阶修正
+### Dummy vertices：用辅助场实现传播子的一阶修正
 
 传播子描述内部粒子怎样连接两个顶点。质量或宽度受 SMEFT 修正时，传播子也会改变。
 对一个传播子 $P(m,\Gamma)$，一阶展开可以示意写为
@@ -171,18 +171,20 @@ generate h > e- ve~ mu+ vm SMHLOOP=0 NP=0 NPprop=2 NPprop^2==2
 所以参数卡 `param_card_Hvlvl.dat` 不再单独列出这个开关，不需要你补一个 `SWITCHES` block。
 其他 SMEFTsim UFO 版本的默认开关可能为 0，不能只复制这一条过程命令就假定已启用。
 
-#### 回到教程的四个样本
+### 原始教程中的四类贡献
 
-| 样本 | 阶数选项 | 实际包含 |
+下表沿用原始教程的样本命名，便于区分各类贡献。当前 [Higgs 进阶练习](../higgs.zh-CN.md)从一个 SM 基线样本计算多个重加权点，并不要求分别生成这四个目录。
+
+| 原始样本名 | 阶数选项 | 实际包含 |
 |---|---|---|
 | `Hvlvl_SM` | `SMHLOOP=0 NP=0 NPprop=0` | SM 基线 |
 | `Hvlvl_SMEFT` | `SMHLOOP=0 NP==1 NPprop=0` | 普通维六振幅平方 |
 | `Hvlvl_SMEFT_linear` | `SMHLOOP=0 NP=1 NP^2==1 NPprop=0` | 普通 SM–维六干涉 |
 | `Hvlvl_SMEFT_prop` | `SMHLOOP=0 NP=0 NPprop=2 NPprop^2==2` | SM–传播子修正干涉 |
 
-这四个样本分别研究不同贡献。构成教程的线性预测时，需要组合 SM、普通干涉和传播子干涉；
-若选择额外加入普通维六平方，则再加入那个样本。
-平方项不自动包含所有 $1/\Lambda^4$ 项，见第 2.4 节。
+这四类贡献彼此不同。在同一参数点构造线性预测时，需要组合 SM、普通干涉和传播子干涉；
+若选择额外保留普通维六平方项，则再加入相应贡献。
+平方项不自动包含所有 $1/\Lambda^4$ 项，见[线性项与平方项](../physics/README.zh-CN.md#4-为什么要区分线性项和平方项)。
 不要随意添加 `Auto` 宽度计算：若同时启用显式传播子修正，可能混入或重复某些效应。
 本练习先保持 `param_card_Hvlvl.dat` 中的宽度数值与处理约定。
 语法与实现可核对 [SMEFTsim 手册的 Usage in MadGraph 与 Propagator corrections 部分](https://arxiv.org/html/2012.11343v3)

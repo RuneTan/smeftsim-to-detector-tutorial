@@ -13,7 +13,7 @@ These files describe static declarations. They are not an evaluated MadGraph mod
 The parameter declarations in the index come from SMEFTsim, which is licensed under MIT. See
 [SMEFTsim-MIT.txt](../../licenses/SMEFTsim-MIT.txt). The references retain their source and version information.
 
-### 7.4 Which parameters does a UFO contain, and which should you set?
+## 1. Which parameters does a UFO contain, and which should you set?
 
 A UFO describes a model in a format the generator can read. Its files cover more than parameter tables:
 
@@ -27,7 +27,7 @@ A UFO describes a model in a format the generator can read. Its files cover more
 | `decays.py` | Exported decay information for supported width-calculation functions |
 | `restrict_*.dat` | Parameter values that simplify and fix the model at import time |
 
-#### Start by distinguishing external and internal parameters
+### Start by distinguishing external and internal parameters
 
 The original tutorial UFO v3.0.2 defines 201 parameters in `parameters.py`: 118 `external` and 83 `internal`.
 These are counts **before importing a restriction**. They are neither the number of parameters to adjust for this decay nor the number of independent EFT operators.
@@ -54,11 +54,11 @@ Changing an input or Wilson coefficient changes the related internal parameters 
 `aEW` is internal in this UFO, while the parameter with the same name can be an external input in `alphaScheme`.
 Keep default values, internal formulas, and independently adjustable inputs distinct.
 
-#### Which values should you check now?
+### Which values should you check now?
 
 Initially retain the SM inputs and widths in `param_card_Hvlvl.dat` to reproduce the reference results. For each exercise, mainly check:
 
-1. The model, flavor assumptions, input scheme, restriction, and the process-order choices in Section 7.3.
+1. The model, flavor assumptions, input scheme, restriction, and [the process-order choices](../processes/README.md#3-coupling-order-options-select-amplitudes-then-terms-in-their-square).
 2. The Wilson coefficients being studied and the values of the other retained coefficients; set them to zero for the SM starting point.
 3. `LambdaSMEFT=1000` and the coefficient units.
 4. The event count, random seed, cuts, and beam settings in `run_card.dat`. These are run settings rather than UFO model parameters.

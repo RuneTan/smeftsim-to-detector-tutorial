@@ -2,12 +2,12 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-This guide explains the model, restriction and order syntax used in handbook Section 7.
+This guide explains the model, restriction and order syntax used in the [advanced Higgs exercise](../higgs.md).
 Enter process commands directly in MadGraph. Parameter, run and reweight cards are obtained from the pinned tutorial and used in the local working directory.
 
-### 7.1 Why this example uses this model
+## 1. Why this example uses this model
 
-See [sections 2.5–2.6 of the physics guide](../physics/README.md) for the physical meaning of flavor assumptions and electroweak input schemes. This exercise uses:
+See [Flavor](../physics/README.md#5-flavor-how-new-interactions-distinguish-fermion-generations) and [Scheme](../physics/README.md#6-scheme-which-measurements-determine-the-electroweak-parameters) in the physics guide for the meaning of these choices. This exercise uses:
 
 ```text
 SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
@@ -22,7 +22,7 @@ SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
 
 The alternative `alphaScheme` uses $\alpha_{\rm em},m_Z,G_F$. Changing schemes requires more than changing a filename: observables, parameter relations, and EFT input shifts must be handled consistently. For research, choose the flavor model and input scheme according to the physics question, and document the model assumptions.
 
-### 7.2 A restriction is different from a parameter card
+## 2. A restriction is different from a parameter card
 
 A restriction simplifies the model **when it is imported**. If a coefficient is restricted to zero at this stage, its vertices may be removed. Increasing the coefficient later in the exported parameter card cannot restore those vertices.
 
@@ -30,18 +30,18 @@ A restriction simplifies the model **when it is imported**. If a coefficient is 
 
 The tutorial UFO uses Python 2 import syntax. The process cards allow MadGraph to convert the **working copy** to Python 3 syntax. The original model in `tutorial` is retained; the local working copy has been converted, imported, and used successfully to generate new events.
 
-### 7.3 Coupling-order options: select amplitudes, then terms in their square
+## 3. Coupling-order options: select amplitudes, then terms in their square
 
-The following is a **syntax example for MadGraph's internal commands**. Read it here; do not execute it in Bash. If you later work at the `MG5_aMC>` prompt, enter each line and press Enter. The actual event-generation steps are in section 8 of the handbook.
+The following is a **syntax example for MadGraph's internal commands**. Read it here; do not execute it in Bash. If you start MadGraph from the project root `~/smeftsim`, enter each line at the `MG5_aMC>` prompt and press Enter. See [Generate events and all weights](../higgs.md#4-generate-events-and-all-weights) for the actual generation steps.
 
 ```text
-import model ./SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
+import model ./work/Material/SMEFTsim_U35_MwScheme_UFO-massless_Hvlvl
 generate h > e- ve~ mu+ vm SMHLOOP=0 NP=0 NPprop=0
 ```
 
 `h` is the initial Higgs, `>` indicates the reaction direction, `ve~` is the electron antineutrino, and `vm` is the muon neutrino. Then use `display diagrams` to inspect the diagrams, or `output directory_name` to export the process code. A successful `output` command has not yet generated events; integration and event generation happen in the subsequent `launch` stage.
 
-#### First level: how many EFT insertions are allowed in an amplitude?
+### First level: how many EFT insertions are allowed in an amplitude?
 
 `NP` is a counting label assigned to couplings in the model. Ordinary dimension-six vertices and dimension-six input-parameter corrections carry the corresponding NP order; SM terms have `NP=0`. This order is distinct from a Wilson coefficient's value: `NP=1` does not mean `cHl3=1`. It does not mean a one-loop calculation either; this example still uses tree-level matrix elements.
 
@@ -62,7 +62,7 @@ $\mathcal M_0$ is the SM amplitude. $\mathcal M_6$ already includes the Wilson c
 
 Distinguish the single equals sign from the double equals sign. Here, `=` sets an upper bound, whereas `==` selects an exact order. These statements apply to this generator version and its tree-level processes; check before applying them to the NLO syntax of another version.
 
-#### Second level: which term in the squared amplitude is retained?
+### Second level: which term in the squared amplitude is retained?
 
 The rate depends on the squared amplitude:
 
@@ -91,7 +91,7 @@ For an algebraic illustration only, take real numbers $\mathcal M_0=2$ and $\mat
 
 `SMHLOOP` labels certain SM loop-generated effective Higgs couplings in the model. `SMHLOOP=0` disables those vertices; it is not a general switch for computing or excluding all loop diagrams. `QCD` and `QED` are other coupling-order labels. Here `QED` also includes structures involving weak and Yukawa couplings, so it should not be interpreted simply as a count of photon vertices. More specific labels, such as `NPcHl3` and `NPcHW`, can select an operator's contribution.
 
-#### Dummy vertices: auxiliary fields for first-order propagator corrections
+### Dummy vertices: auxiliary fields for first-order propagator corrections
 
 A propagator describes how an internal particle connects two vertices. If SMEFT changes its mass or width, its propagator changes too. A first-order expansion of a propagator $P(m,\Gamma)$ can be written schematically as
 
@@ -127,16 +127,18 @@ generate h > e- ve~ mu+ vm SMHLOOP=0 NP=0 NPprop=2 NPprop^2==2
 
 This feature also requires the model to allow dummy couplings and set `linearPropCorrections` to a nonzero value. **Both are already configured in this tutorial:** `coupling_orders.py` sets `NPprop.expansion_order=99`, and `restrict_massless_Hvlvl.dat` fixes `linearPropCorrections=1` when the model is imported. The parameter card therefore does not list this switch separately; you do not need to add a `SWITCHES` block. Other SMEFTsim UFO variants may default to 0, so copying this process command alone does not establish that the feature is enabled.
 
-#### The tutorial's four samples
+### Four contributions in the original tutorial
 
-| Sample | Order options | Content |
+The table retains the original tutorial's sample names to distinguish the contributions. The current [advanced Higgs exercise](../higgs.md) computes several reweighting points from one SM baseline sample; it does not require generating these four directories separately.
+
+| Original sample name | Order options | Content |
 |---|---|---|
 | `Hvlvl_SM` | `SMHLOOP=0 NP=0 NPprop=0` | SM baseline |
 | `Hvlvl_SMEFT` | `SMHLOOP=0 NP==1 NPprop=0` | Ordinary dimension-six amplitude squared |
 | `Hvlvl_SMEFT_linear` | `SMHLOOP=0 NP=1 NP^2==1 NPprop=0` | Ordinary SM–dimension-six interference |
 | `Hvlvl_SMEFT_prop` | `SMHLOOP=0 NP=0 NPprop=2 NPprop^2==2` | SM–propagator-correction interference |
 
-These samples isolate different contributions. To construct the tutorial's linear prediction, combine the SM baseline, ordinary interference, and propagator interference. If you also choose to retain the ordinary dimension-six squared term, add that sample. The squared term does not include every contribution at $1/\Lambda^4$; see [section 2.4 of the physics guide](../physics/README.md).
+These are distinct contributions. To construct a linear prediction at a given parameter point, combine the SM baseline, ordinary interference, and propagator interference. If you also choose to retain the ordinary dimension-six squared term, add that contribution. The squared term does not include every contribution at $1/\Lambda^4$; see [Linear and quadratic terms](../physics/README.md#4-why-distinguish-linear-and-quadratic-terms).
 
 Do not add `Auto` width calculations without checking the convention: when explicit propagator corrections are enabled, doing so may mix in or double-count some effects. Keep the width values and treatment specified in `param_card_Hvlvl.dat` for this exercise.
 

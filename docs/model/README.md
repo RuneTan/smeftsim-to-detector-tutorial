@@ -2,11 +2,9 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-This guide explains what the model package provides, how MadGraph and ROOT fit into the workflow, and what the Mathematica notebooks are for. Return to the [handbook](../higgs.md) to continue the exercises.
+This guide explains what the model package provides, how MadGraph and ROOT fit into the workflow, and what the Mathematica notebooks are for. Return to the [main handbook](../handbook.md) to continue the exercises.
 
-## 3. What SMEFTsim provides, and its scope
-
-### 3.1 What the package contains
+## 1. What the package contains
 
 According to the [SMEFTsim website](https://smeftsim.github.io/) and the [practical guide](https://arxiv.org/abs/2012.11343), SMEFTsim provides FeynRules source files and exported UFO models for automated SMEFT calculations.
 
@@ -17,7 +15,7 @@ According to the [SMEFTsim website](https://smeftsim.github.io/) and the [practi
 
 SMEFTsim offers the `general`, `U35`, `MFV`, `top`, and `topU3l` flavor models, each with either `alphaScheme` or `MwScheme`. This exercise uses one fixed combination.
 
-### 3.2 Roles in the software workflow
+## 2. Roles in the software workflow
 
 ```mermaid
 flowchart LR
@@ -26,12 +24,13 @@ flowchart LR
     C --> D[LHE file]
     D --> E[Distributions and consistency checks]
     D --> F[Pythia showering and hadronization]
-    F --> G[Delphes detector approximation]
+    F --> G[Delphes detector response]
+    F --> H[Parnassus detector response]
 ```
 
-This tutorial covers LHE generation and distribution checks. The purely leptonic Higgs decay example does not require Pythia or Delphes. SMEFTsim itself does not perform the entire workflow of detector simulation, fitting real data, or training a neural inference model.
+The [main dimuon exercise](../handbook.md) follows LHE events through Pythia and the Delphes/Parnassus detector responses. The [advanced Higgs exercise](../higgs.md) stops at LHE and ROOT distribution checks; it does not run showering or detector simulation. Both use the same installed environment. SMEFTsim itself does not perform the entire workflow of detector simulation, fitting real data, or training a neural inference model.
 
-### 3.3 State the calculation's scope explicitly
+## 3. State the calculation's scope explicitly
 
 The local tutorial generates events at tree level. The name `aMC@NLO` in MadGraph does not imply that every imported UFO automatically supports a complete SMEFT calculation at NLO.
 
@@ -39,7 +38,7 @@ Some SM loop-induced Higgs interactions in SMEFTsim use approximations such as t
 
 A successful software run establishes that the configuration can execute. Interpreting its physics still requires checking the model assumptions, EFT truncation, parameter card, integration uncertainty, and reference samples. A simulated distribution is not automatically the same as a real-data distribution.
 
-### 3.4 What the SMEFTsim Mathematica notebooks do
+## 4. What the SMEFTsim Mathematica notebooks do
 
 The SMEFTsim model repository's [Mathematica_notebooks directory](https://github.com/SMEFTsim/SMEFTsim/tree/main/Mathematica_notebooks) is separate from the downloaded 2023 MadGraph tutorial. The current tutorial copy contains no `.nb` files. The SMEFTsim repository README describes two uses:
 

@@ -2,8 +2,10 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-This example comes from the `Hvlvl_SM_manual` run used in handbook Chapter 9:
+This example preserves the earlier `Hvlvl_SM_manual` run:
 `h > e- ve~ mu+ vm`, SMEFTsim v3.0.2 / U35 / MwScheme and MadGraph 2.9.27.
+
+For the current instructions, see [Reproduce the existing 2,000-event example](../../docs/higgs.md#7-reproduce-the-existing-2000-event-example) in the Higgs exercise.
 
 | File | Contents |
 |---|---|
@@ -13,7 +15,7 @@ This example comes from the `Hvlvl_SM_manual` run used in handbook Chapter 9:
 | [metadata.json](metadata.json) | Actual event count, seed, versions, parameter values, run settings, mean weights and file checksums |
 
 The actual sample contains **2,000 events**, with seed **12363**.
-These values were read from the original run card; they need not match the handbook's illustrative seed.
+These values were read from the original run card; they need not match the Higgs exercise's illustrative seed.
 
 The interference, squared and propagator weights were calculated using `reweight_card_int.dat`, `reweight_card_squares.dat` and `reweight_card_propW.dat`.
 Each target point switches on one coefficient with value 1, with `LambdaSMEFT=1000 GeV`.

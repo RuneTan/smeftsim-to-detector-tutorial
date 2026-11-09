@@ -6,7 +6,7 @@ This optional guide introduces basic Linux commands and the terminal conventions
 
 The examples use `~/smeftsim`, a project directory inside your own Linux home directory. They apply to native Linux, virtual machines and WSL; your username can differ.
 
-Return to the [main handbook](../higgs.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
+Return to the [main handbook](../handbook.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
 
 ## Contents
 
@@ -26,7 +26,7 @@ replace them with the paths you want to use. The table is a reference, not a seq
 | `pwd` | Show the current directory | Prints its absolute path |
 | `ls` | List the current directory | Shows files and directories, excluding hidden names |
 | `ls -lh` | Show a detailed listing | `-l` adds details; `-h` makes sizes readable, such as `4.0K` |
-| `ls -a` | Include hidden names | Useful for seeing `.venv`, which starts with a dot |
+| `ls -a` | Include hidden names | Useful for seeing `.venv-unified`, which starts with a dot |
 | `cd ~/smeftsim` | Enter the project directory | `~` refers to your Linux home directory |
 | `cd ..` | Go to the parent directory | `..` means one level up |
 | `mkdir -p demo` | Create a directory | `-p` also creates missing parents and accepts an existing directory |
@@ -84,13 +84,13 @@ A `>` **inside a command**, however, redirects output. It is part of the command
 Typing `python` and pressing Enter switches from Bash to Python's `>>>` prompt.
 In Python, type `exit()` and press Enter to return to Bash.
 In Bash, type `exit` and press Enter to leave the Ubuntu terminal; this differs from `exit()`.
-`deactivate` only leaves the virtual environment, keeping the Linux terminal open.
+This tutorial uses `source scripts/env.sh` to set environment variables; it does not activate the virtual environment through its `activate` script or define `deactivate`. To return to an unchanged shell environment, close this tutorial terminal and open a fresh one.
 
 ## 3. Distinguish interactive Python from editing a file
 
 - **Ordinary Python statements:** at `>>>`, enter one complete line and press Enter once; `>>>` should return when it finishes.
 - **Python loops:** enter each line and press Enter, preserving indentation. After the last line, Python still displays `...`.
-  **Type nothing and press Enter once more** to run the loop. [Handbook Section 8.6](../higgs.md#5-lhe--root--pdf) gives line-by-line instructions.
+  **Type nothing and press Enter once more** to run the loop.
 - **Editing files:** code marked "file contents" belongs in the named file, opened in an editor.
   In the editor, Enter only inserts a new line. Press `Ctrl+S` to save your changes; do not execute these contents in the terminal.
 - **Names, logs, and illustrations:** `text` blocks, file listings, and diagrams are usually for reading,
@@ -105,8 +105,8 @@ These commands build on the basics in Section 1 and are used for environment act
 
 | Command | What it does | What you normally see after pressing Enter |
 |---|---|---|
-| `source scripts/env.sh` | Makes this terminal use the project's Python and dependencies | Often `(.venv)` in the prompt; check with `which python` |
-| `which python` | Shows which Python interpreter is selected | The absolute path corresponding to `$HOME/smeftsim/.venv/bin/python` |
+| `source scripts/env.sh` | Makes this terminal use the project's Python and dependencies | No output or prompt change is expected; check with `which python` |
+| `which python` | Shows which Python interpreter is selected | The absolute path corresponding to `$HOME/smeftsim/.venv-unified/bin/python` |
 | `head -n 1 file` | Shows the first line | An LHE file should start with `<LesHouchesEvents ...>` |
 | `gzip -dc compressed_file > new_file` | Decompresses into a new file, keeping the compressed original | Usually no output on success; check with `ls` |
 | `python script.py arguments...` | Runs a script with the current interpreter | Script logs, results, or an error |
@@ -125,7 +125,7 @@ The script filename after `python` does not count as a script argument:
 The main Linux working directory is `~/smeftsim`.
 Bash expands `~` and `$HOME` to your current Linux user's home directory; `echo "$HOME"` shows its absolute path.
 For example, user `alex` may have `/home/alex/smeftsim`. Use your own home directory rather than copying an example username.
-`outputs/my_pyroot_reference/events.lhe` is a relative path, interpreted from the project root.
+`out/higgs/new/events.lhe` is a relative path, interpreted from the project root.
 `../../work/...` means go up two directory levels before locating the script.
 In WSL, `/mnt/c/...` accesses the Windows C drive; it is not the Linux project directory.
 
@@ -133,4 +133,4 @@ Linux filenames are case-sensitive: `Material` and `material` are different dire
 Copy quotes together with paths that are enclosed in single or double quotes.
 If a step first asks you to `cd` into a directory, execute that command and press Enter before copying the script command.
 
-Return to the [main handbook](../higgs.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
+Return to the [main handbook](../handbook.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).

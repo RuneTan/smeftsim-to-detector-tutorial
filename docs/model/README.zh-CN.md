@@ -3,11 +3,9 @@
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 这里解释模型包的功能、MadGraph/ROOT 的职责，以及 Mathematica Notebook 的用途。
-返回 [主手册](../higgs.zh-CN.md) 后即可继续操作。
+返回 [主手册](../handbook.zh-CN.md) 后即可继续操作。
 
-## 3. SMEFTsim 的功能与边界
-
-### 3.1 它提供什么
+## 1. 它提供什么
 
 根据 [SMEFTsim 项目网站](https://smeftsim.github.io/) 和 [实用手册](https://arxiv.org/abs/2012.11343)，
 SMEFTsim 提供 FeynRules 源码和预先导出的 UFO 模型，用于自动化 SMEFT 计算。
@@ -20,7 +18,7 @@ SMEFTsim 提供 FeynRules 源码和预先导出的 UFO 模型，用于自动化 
 SMEFTsim 的模型选项包括 `general`、`U35`、`MFV`、`top`、`topU3l`，
 各自可配 `alphaScheme` 或 `MwScheme`。本练习先固定一种组合。
 
-### 3.2 软件链中的职责
+## 2. 软件链中的职责
 
 ```mermaid
 flowchart LR
@@ -29,13 +27,14 @@ flowchart LR
     C --> D[LHE 文件]
     D --> E[分布与一致性检查]
     D --> F[Pythia 淋浴与强子化]
-    F --> G[Delphes 探测器近似]
+    F --> G[Delphes 探测器响应]
+    F --> H[Parnassus 探测器响应]
 ```
 
-本教程先走到 LHE 和分布检查。Higgs 的纯轻子衰变例子不需要先安装 Pythia 或 Delphes。
+[双 muon 主线](../handbook.zh-CN.md)从 LHE 继续运行 Pythia，并比较 Delphes 与 Parnassus 的探测器响应。[Higgs 进阶练习](../higgs.zh-CN.md)则只做到 LHE 和 ROOT 分布检查，不运行 shower 或探测器模拟。两条练习共用同一套安装环境。
 SMEFTsim 本身不承担探测器模拟、自动拟合真实数据或训练神经推断器的全部工作。
 
-### 3.3 计算范围要明确
+## 3. 计算范围要明确
 
 本地教程是树级事件生成。MadGraph 名称中有 `aMC@NLO`，
 不代表任何导入的 UFO 都自动提供完整 SMEFT 的 NLO 计算。
@@ -45,7 +44,7 @@ SMEFTsim 中部分 SM loop-induced Higgs 相互作用采用重顶极限等近似
 软件运行成功只证明该配置可执行。物理结果仍需核对模型假设、截断、参数卡、
 积分误差和参考样本；模拟分布也不自动等于真实数据分布。
 
-### 3.4 SMEFTsim 的 Mathematica Notebook 用来做什么
+## 4. SMEFTsim 的 Mathematica Notebook 用来做什么
 
 SMEFTsim 模型仓库的 [Mathematica_notebooks 目录](https://github.com/SMEFTsim/SMEFTsim/tree/main/Mathematica_notebooks)
 与我们下载的 2023 年 MadGraph 教程是不同的材料；当前教程副本没有 `.nb` 文件。

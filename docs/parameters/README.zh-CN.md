@@ -13,7 +13,7 @@
 索引里的参数声明来自 MIT 许可的 SMEFTsim；许可见
 [SMEFTsim-MIT.txt](../../licenses/SMEFTsim-MIT.txt)，出处和版本保留在资料中。
 
-### 7.4 UFO 中有哪些参数，哪些需要自己设置
+## 1. UFO 中有哪些参数，哪些需要自己设置
 
 UFO 不只是参数表，它是生成器可以读取的模型描述：
 
@@ -27,7 +27,7 @@ UFO 不只是参数表，它是生成器可以读取的模型描述：
 | `decays.py` | 模型导出的衰变信息，供支持的宽度计算功能使用 |
 | `restrict_*.dat` | 在导入时简化和固定模型的参数取值 |
 
-#### External 与 internal 是第一层区分
+### External 与 internal 是第一层区分
 
 原始教程 UFO v3.0.2 的 `parameters.py` 共定义 201 项：118 个 `external`，83 个 `internal`。
 这是**导入 restriction 之前**的计数，不是本衰变需要调整的参数数量，也不是独立 EFT 算子数量。
@@ -54,11 +54,11 @@ $\hat v=(\sqrt2 G_F)^{-1/2}$、$g_s=\sqrt{4\pi\alpha_s}$，
 `aEW` 在本 UFO 中是内部量；同名参数在 `alphaScheme` 可成为外部输入。
 不能把默认值、内部公式和独立可调输入混为一谈。
 
-#### 当前需要你确认哪些值
+### 当前需要你确认哪些值
 
 先保持 `param_card_Hvlvl.dat` 中的 SM 输入与宽度，以便复现参考结果。每次练习主要确认：
 
-1. 模型、flavor、scheme、restriction，以及第 7.3 节的过程阶数选项。
+1. 模型、flavor、scheme、restriction，以及[过程阶数选项](../processes/README.zh-CN.md#3-阶数选项先筛选振幅再筛选振幅平方)。
 2. 研究的 Wilson 系数及其他保留系数的数值；SM 起点把它们设为零。
 3. `LambdaSMEFT=1000` 及系数单位。
 4. `run_card.dat` 中的事件数、随机种子、切选和束流等运行设置；这些不是 UFO 的模型参数。

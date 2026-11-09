@@ -2,8 +2,10 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-这组数据来自你完成主手册第 9 节得到的 `Hvlvl_SM_manual`：
+这组数据保留了先前的 `Hvlvl_SM_manual` 运行结果：
 `h > e- ve~ mu+ vm`，SMEFTsim v3.0.2 / U35 / MwScheme，MadGraph 2.9.27。
+
+当前操作步骤见 Higgs 练习中的[复现原有的 2,000 事件示例](../../docs/higgs.zh-CN.md#7-复现原有的-2000-事件示例)。
 
 | 文件 | 做什么 |
 |---|---|
@@ -13,7 +15,7 @@
 | [metadata.json](metadata.json) | 实际事件数、随机种子、版本、参数、运行设置、权重均值和文件哈希 |
 
 实际事件数是 **2,000**，实际种子是 **12363**。它们从原始 run card 读取，
-不能根据主手册的示例种子推断。
+不能根据 Higgs 练习的示例种子推断。
 
 线性、平方、传播子权重分别由 `reweight_card_int.dat`、`reweight_card_squares.dat` 和 `reweight_card_propW.dat` 产生；各参数点一次只打开一个系数并设为 1，
 `LambdaSMEFT=1000 GeV`。11 个权重在全部事件中存在且有限。
