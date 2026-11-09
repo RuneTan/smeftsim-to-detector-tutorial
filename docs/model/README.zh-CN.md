@@ -3,7 +3,7 @@
 [English](README.md) | [简体中文](README.zh-CN.md)
 
 这里解释模型包的功能、MadGraph/ROOT 的职责，以及 Mathematica Notebook 的用途。
-返回 [主手册](../handbook.zh-CN.md) 后即可继续操作。
+返回 [主手册](../higgs.zh-CN.md) 后即可继续操作。
 
 ## 3. SMEFTsim 的功能与边界
 

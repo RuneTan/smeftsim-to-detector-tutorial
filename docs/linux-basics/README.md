@@ -6,7 +6,7 @@ This optional guide introduces basic Linux commands and the terminal conventions
 
 The examples use `~/smeftsim`, a project directory inside your own Linux home directory. They apply to native Linux, virtual machines and WSL; your username can differ.
 
-Return to the [main handbook](../handbook.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
+Return to the [main handbook](../higgs.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
 
 ## Contents
 
@@ -90,7 +90,7 @@ In Bash, type `exit` and press Enter to leave the Ubuntu terminal; this differs 
 
 - **Ordinary Python statements:** at `>>>`, enter one complete line and press Enter once; `>>>` should return when it finishes.
 - **Python loops:** enter each line and press Enter, preserving indentation. After the last line, Python still displays `...`.
-  **Type nothing and press Enter once more** to run the loop. [Handbook Section 8.6](../handbook.md#86-use-root-to-plot-your-own-sm-distributions) gives line-by-line instructions.
+  **Type nothing and press Enter once more** to run the loop. [Handbook Section 8.6](../higgs.md#5-lhe--root--pdf) gives line-by-line instructions.
 - **Editing files:** code marked "file contents" belongs in the named file, opened in an editor.
   In the editor, Enter only inserts a new line. Press `Ctrl+S` to save your changes; do not execute these contents in the terminal.
 - **Names, logs, and illustrations:** `text` blocks, file listings, and diagrams are usually for reading,
@@ -105,7 +105,7 @@ These commands build on the basics in Section 1 and are used for environment act
 
 | Command | What it does | What you normally see after pressing Enter |
 |---|---|---|
-| `source .venv/bin/activate` | Makes this terminal use the project's Python and dependencies | Often `(.venv)` in the prompt; check with `which python` |
+| `source scripts/env.sh` | Makes this terminal use the project's Python and dependencies | Often `(.venv)` in the prompt; check with `which python` |
 | `which python` | Shows which Python interpreter is selected | The absolute path corresponding to `$HOME/smeftsim/.venv/bin/python` |
 | `head -n 1 file` | Shows the first line | An LHE file should start with `<LesHouchesEvents ...>` |
 | `gzip -dc compressed_file > new_file` | Decompresses into a new file, keeping the compressed original | Usually no output on success; check with `ls` |
@@ -133,4 +133,4 @@ Linux filenames are case-sensitive: `Material` and `material` are different dire
 Copy quotes together with paths that are enclosed in single or double quotes.
 If a step first asks you to `cd` into a directory, execute that command and press Enter before copying the script command.
 
-Return to the [main handbook](../handbook.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).
+Return to the [main handbook](../higgs.md) for the SMEFTsim exercises. For installation on a new machine, use the [setup guide](../setup/README.md).

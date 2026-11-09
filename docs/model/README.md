@@ -2,7 +2,7 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-This guide explains what the model package provides, how MadGraph and ROOT fit into the workflow, and what the Mathematica notebooks are for. Return to the [handbook](../handbook.md) to continue the exercises.
+This guide explains what the model package provides, how MadGraph and ROOT fit into the workflow, and what the Mathematica notebooks are for. Return to the [handbook](../higgs.md) to continue the exercises.
 
 ## 3. What SMEFTsim provides, and its scope
 

@@ -1,5 +1,2 @@
-# Ubuntu 22.04 / Python 3.10; install only inside .venv
-numpy==1.26.4
-six==1.17.0
-setuptools==69.5.1
-ROOT==0.1a12
+# Shared dependency lock; the setup script also selects the CPU PyTorch index.
+-r ../../config/requirements.lock.txt

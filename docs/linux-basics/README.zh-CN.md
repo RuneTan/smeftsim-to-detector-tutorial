@@ -6,7 +6,7 @@
 
 示例使用自己 Linux 主目录下的项目目录 `~/smeftsim`，适用于原生 Linux、虚拟机和 WSL；用户名无需与作者相同。
 
-继续 SMEFTsim 练习请返回 [主手册](../handbook.zh-CN.md)；新电脑的安装配置见 [首次配置说明](../setup/README.zh-CN.md)。
+继续 SMEFTsim 练习请返回 [主手册](../higgs.zh-CN.md)；新电脑的安装配置见 [首次配置说明](../setup/README.zh-CN.md)。
 
 ## 目录
 
@@ -90,7 +90,7 @@ Bash 中输入 `exit` 再回车，会退出 Ubuntu 终端；这与 `exit()` 不�
 
 - **Python 普通语句：** 在 `>>>` 输入完整一行，按回车一次；执行后应再次看到 `>>>`。
 - **Python 循环：** 按行输入并回车，保留缩进。最后一行回车后还会显示 `...`；
-  此时**什么都不输入，再按一次回车**，整个循环才执行。[主手册第 8.6 节](../handbook.zh-CN.md#86-调用-root画出自己的-sm-分布)给出逐行说明。
+  此时**什么都不输入，再按一次回车**，整个循环才执行。[主手册第 8.6 节](../higgs.zh-CN.md#5-lhe--root--pdf)给出逐行说明。
 - **修改文件：** 标为“文件内容”的代码，应放到编辑器中的指定文件里。
   回车在编辑器里只是换行，编辑完成后按 `Ctrl+S` 保存；不要放进终端执行。
 - **名称、日志、示意：** `text` 表格、文件列表和图示通常只用于阅读，
@@ -105,7 +105,7 @@ Bash 中输入 `exit` 再回车，会退出 Ubuntu 终端；这与 `exit()` 不�
 
 | 写法 | 它做什么 | 回车后通常会看到什么 |
 |---|---|---|
-| `source .venv/bin/activate` | 让当前终端使用项目的 Python 和依赖 | 提示符常出现 `(.venv)`；用 `which python` 核对 |
+| `source scripts/env.sh` | 让当前终端使用项目的 Python 和依赖 | 提示符常出现 `(.venv)`；用 `which python` 核对 |
 | `which python` | 查看当前调用的是哪个 Python | 应为 `$HOME/smeftsim/.venv/bin/python` 对应的绝对路径 |
 | `head -n 1 文件` | 看文件第一行 | LHE 应以 `<LesHouchesEvents ...>` 开始 |
 | `gzip -dc 压缩文件 > 新文件` | 解压并写入新文件；原压缩文件保留 | 成功通常没有输出，用 `ls` 检查 |
@@ -133,4 +133,4 @@ Linux 区分大小写：`Material` 与 `material` 不是同一个目录。
 带单引号或双引号的路径要连引号一起复制。
 如果某步要求先 `cd` 到一个目录，请先执行它并回车，不要只复制后面的脚本命令。
 
-继续 SMEFTsim 练习请返回 [主手册](../handbook.zh-CN.md)；新电脑的安装配置见 [首次配置说明](../setup/README.zh-CN.md)。
+继续 SMEFTsim 练习请返回 [主手册](../higgs.zh-CN.md)；新电脑的安装配置见 [首次配置说明](../setup/README.zh-CN.md)。

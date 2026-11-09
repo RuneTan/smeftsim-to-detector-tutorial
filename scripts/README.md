@@ -1,16 +1,25 @@
-# Local helper script
+# Helper scripts
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[简体中文](README.zh-CN.md) | [Complete tutorial](../docs/handbook.md)
 
-`fix_axes.py` applies display fixes to the Python 3 plotting copy prepared in [setup Section 5](../docs/setup/README.md#5-prepare-the-two-python-3-analysis-scripts).
-From the project root, with `.venv` activated and Ghostscript installed, run:
+Run `source scripts/env.sh` from the project root first. These readable helpers implement repeated preparation, conversion and analysis steps; the tutorial shows the actual generator and detector calls.
+
+| File | Purpose |
+|---|---|
+| `setup.sh` / `env.sh` | Install and load the shared Python 3.12 environment |
+| `prepare_materials.py` | Prepare upstream UFO/cards and Python 3 Higgs working copies |
+| `prepare_dy.py` | Set the SM dimuon baseline and reweight card |
+| `prepare_higgs.py` | Prepare the original Higgs settings and three reweight categories |
+| `lhe.py` | Read numerical LHE records and weights |
+| `shower.py` / `hepmc_io.py` | Call Pythia, preserve named weights and check HepMC |
+| `plot_dy.py` | Join hard, stable-particle and reconstructed data by event ID |
+| `fix_axes.py` | Adjust labels and layout in the local Higgs plotter copy |
+| `test_analysis.py` | Check event alignment, signed normalization and correlated ratios |
+| `validate.py` | Check completed runs and write the validation record |
 
 ```bash
-python scripts/fix_axes.py
+python scripts/test_analysis.py
+python scripts/validate.py
 ```
 
-It reads and updates `work/Material/pyroot_python3/plot_histos.py`, correcting axis labels, panel spacing, SM-only layout and PDF font embedding. It preserves histogram calculations and the upstream originals in `tutorial`.
-Before its first patch, it keeps a local backup at `.maintainer-notes/axes/plot_histos.before.py`; repeating the command leaves an already corrected copy unchanged.
-The project root is resolved from the script's location, so it also works when invoked by absolute path from another directory.
-
-Return to the [handbook](../docs/handbook.md) or [repository overview](../README.md).
+Run the second command after completing the main tutorial, the new Higgs sample and the original reference analysis. It writes `out/unified-validation/validation.json`.

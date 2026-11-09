@@ -1,55 +1,48 @@
-# SMEFTsim Learning Tutorial
+# From a SMEFTsim UFO to detector-level plots
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+English | [简体中文](README.zh-CN.md)
 
-An independent bilingual tutorial for SM event generation, ROOT analysis and SMEFT reweighting of a four-lepton Higgs decay using SMEFTsim and MadGraph.
-The repository provides a handbook, topic notes and locally generated example results. Obtain the runtime software directly from upstream and install it inside Linux.
+Follow one dimuon process through **UFO → MadGraph → Pythia → Delphes / Parnassus → ROOT plots**. The main exercise uses the same 13 TeV proton-collision sample throughout, retaining event identities and SMEFT weights from the hard process to reconstructed objects.
 
-**First visit: follow the [installation guide](docs/setup/README.md), then the [handbook](docs/handbook.md).**
-The installation guide starts with your current environment: native Linux or a virtual machine, an existing WSL2 Ubuntu, or a new dedicated WSL2 installation. It then covers pinned downloads, one `.venv`, analysis-script preparation and installation checks.
-The handbook explains what each call reads, changes and writes. Analysis and plotting use the locally prepared tutorial scripts; no hand-typed plotting program is required.
-All operations use one Linux project directory; no Windows project checkout or directory-by-directory setup is needed.
+Start with [installation](docs/setup/README.md), then follow the [complete tutorial](docs/handbook.md). Both the dimuon workflow and the advanced Higgs exercise use one project-local **Python 3.12.12** environment.
 
-| Reading entry point | Purpose |
+| Entry point | What you will do |
 |---|---|
-| [Installation](docs/setup/README.md) | Choose an existing or new Linux environment, obtain pinned software and check the example |
-| [Handbook](docs/handbook.md) | Model and cards → your SM sample → reweighting → analysis and plots |
-| [Topic notes](docs/README.md) | Consult physics, models, orders, parameters, figures or Linux basics as needed |
-| [Detector-chain exercise](https://github.com/RuneTan/detector-learning) | Continue with an independent Pythia → Delphes / Parnassus tutorial |
-| [Example results](examples/reweighted/README.md) | 2,000 events, 11 extra weights, ROOT histograms and PDFs |
-| [Sources and licenses](THIRD_PARTY_NOTICES.md) | Provenance and license scope of the software, tutorial and repository material |
+| [Installation and activation](docs/setup/README.md) | Prepare Linux, pinned software and the shared environment |
+| [Complete dimuon tutorial](docs/handbook.md) | Import the UFO, generate and reweight events, shower, simulate detectors and plot |
+| [Advanced Higgs exercise](docs/higgs.md) | Study a four-body decay, interference, squared and propagator terms |
+| [Topic notes](docs/README.md) | Consult models, Wilson coefficients, orders, parameters and Linux basics |
+| [Example results](examples/dimuon/README.md) | Inspect 1,000 events, four processing stages and three plots |
+| [Validation record](docs/validation.md) | Review versions, checks and measured results |
 
-![Reweighted distribution from the locally generated sample](docs/figures/rw_mmv.png)
+![SMEFT comparison after detector response](examples/dimuon/eft_dimuon_mass.png)
 
-The figure uses local events and a Python 3 copy of Ilaria Brivio's 2023 tutorial `plot_histos.py`, with local display fixes.
-The axes show kinematic variables and each bin's partial decay width; see the [figure guide](docs/figures/README.md).
+All three curves use the same events with the SM, `cHl3=+1` and `cHl3=-1` weights. The vertical axis retains cross-section normalization; the lower panel shows EFT/SM.
+
+After installation, enter these commands in a Linux terminal:
+
+```bash
+cd ~/smeftsim
+source scripts/env.sh
+```
+
+Continue with [section 2 of the tutorial](docs/handbook.md#2-import-the-ufo-and-export-the-dimuon-process). Windows readers first open their WSL terminal.
+
+`config` contains readable settings; `scripts` supplies conversion, analysis and installation helpers. The handbook explains the package calls and the input/output of each step. `tools`, `.venv-unified`, `work` and `out` are local installation or runtime directories. Small reference figures and numerical records live in `examples`.
+
+The SMEFTsim model and original Higgs tutorial come from Ilaria Brivio and collaborators. This workflow uses MadGraph for hard events, Pythia for showering, Delphes and Parnassus for detector response, and ROOT for plots. Versions, sources and attribution are recorded in [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Sources and acknowledgments
 
-| Project or resource | Authors or maintainers | Use in this project |
-|---|---|---|
-| [SMEFTsim tutorial index](https://smeftsim.github.io/tutorials.html) | SMEFTsim project | Learning route |
-| [2023 Higgs-decay tutorial](https://github.com/IlariaBrivio/SMEFTsim_tutorial_June23) | Ilaria Brivio | Processes, cards, UFO, analysis and plotting methods; pinned commit `92ffde994d7c0d90554ee629cc477ee171c76b84` |
-| [SMEFTsim](https://github.com/SMEFTsim/SMEFTsim) | Ilaria Brivio, Yun Jiang, Michael Trott and other contributors | Tutorial model v3.0.2 and model documentation |
-| [MadGraph5_aMC@NLO](https://github.com/mg5amcnlo/mg5amcnlo) | MadTeam | Generator 2.9.27; pinned commit `eb76cab72b8d44aac7162ac7221ac08a4384a169` |
-| [ROOT / PyROOT](https://root.cern/) | ROOT team | Histogram access and plotting |
-| [SMEFTsim 3.0 — a practical guide](https://arxiv.org/abs/2012.11343) | Ilaria Brivio | Theory, parameters and model implementation |
-| [The SMEFTsim package, theory and tools](https://arxiv.org/abs/1709.06492) | I. Brivio, Y. Jiang and M. Trott | Theory and tools of the original package |
-| [Warsaw basis](https://arxiv.org/abs/1008.4884) | B. Grzadkowski, M. Iskrzyński, M. Misiak and J. Rosiek | Operator-basis reference |
-| [PDG Kinematics](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-kinematics.pdf) | Particle Data Group | Widths, phase space and kinematics |
-| [Microsoft WSL](https://learn.microsoft.com/en-us/windows/wsl/install) | Microsoft | Dedicated Linux environment |
+| Resource | Authors or maintainers; role |
+|---|---|
+| [SMEFTsim](https://github.com/SMEFTsim/SMEFTsim) | Ilaria Brivio, Yun Jiang, Michael Trott and contributors; UFO model and theory |
+| [June 2023 Higgs tutorial](https://github.com/IlariaBrivio/SMEFTsim_tutorial_June23) | Ilaria Brivio; original Higgs cards, restrictions and analysis/plotting scripts |
+| [MadGraph5_aMC@NLO](https://github.com/mg5amcnlo/mg5amcnlo) | MadTeam; matrix elements, event generation and reweighting |
+| [Pythia](https://pythia.org/) | Pythia collaboration; shower, hadronisation and decays |
+| [Delphes](https://github.com/delphes/delphes) | Delphes collaboration; fast detector simulation |
+| [Parnassus](https://github.com/parnassus-hep/parnassus) | Parnassus contributors; alternative detector-response workflow |
+| [ROOT](https://root.cern/) | ROOT team; histograms and figures |
+| [SMEFTsim 3.0 practical guide](https://arxiv.org/abs/2012.11343) | Ilaria Brivio; model implementation and conventions |
 
-These notes are an independent learning aid. Model, generator and tutorial credits are listed above;
-this project does not imply endorsement by those projects or contributors.
-For scientific publications, follow the citation requirements of the tools you use.
-
-## What the repository contains
-
-The public repository retains documentation, figures, the parameter index, example data and source/license records.
-MadGraph, ROOT, the UFO, original tutorial and Python 3 script copies are obtained or prepared locally during Linux installation; they are not bundled here.
-`.venv`, `tutorial`, `tools`, `work`, `reference` and `outputs` are local runtime directories created by installation or exercise commands and ignored by Git.
-
-The example in `examples/reweighted` was generated locally, rather than copied from the upstream reference results.
-Its public LHE is an analysis export preserving numerical initialization data, events and weights while omitting full software templates and card text. Settings and checksums are recorded in `metadata.json`.
-The SMEFTsim model's MIT license does not automatically cover the independent tutorial or this entire teaching repository.
-No project-wide reuse license has been selected for the project-owned documentation; third-party licenses and attribution are recorded in [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md).
+Detector interface sources are collected in [the source notes](docs/detector-sources.md). For scientific use, cite the original software and physics references relevant to your calculation.

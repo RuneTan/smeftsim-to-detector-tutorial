@@ -33,7 +33,7 @@ The raw local simulation file has not been modified.
 
 ## Replot the supplied ROOT file
 
-First prepare the [local Python 3 working copies](../../docs/setup/README.md#5-prepare-the-two-python-3-analysis-scripts).
+First prepare the [local Python 3 working copies](../../docs/setup/README.md).
 Then, from the Linux project root, enter each complete command and press Enter once:
 
 ```bash
@@ -57,7 +57,7 @@ python work/Material/pyroot_python3/lhe_analyzer.py outputs/example_reweighted/e
 
 The analyzer requires two arguments: the input LHE and output ROOT paths.
 Include both before pressing Enter. The output should contain 48 histograms.
-See the [handbook](../../docs/handbook.md) for weight and normalization conventions.
+See the [handbook](../../docs/higgs.md) for weight and normalization conventions.
 
 Source: [Ilaria Brivio's 2023 tutorial](https://github.com/IlariaBrivio/SMEFTsim_tutorial_June23).
 The sample was generated locally. Its input cards and plotting method follow the linked tutorial;

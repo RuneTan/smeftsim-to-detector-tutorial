@@ -1,16 +1,20 @@
-# 知识附录
+# 教程与知识附录
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [项目首页](../README.zh-CN.md)
 
-先按顺序完成 [安装指南](setup/README.zh-CN.md) 和 [handbook](handbook.zh-CN.md)。需要进一步解释时再查这些附录。
+先沿 [双 muon 主线](handbook.zh-CN.md) 完成一次从 UFO 到图像的运行，再按需要查下面的内容。
 
-| 说明 | 内容 |
+| 文档 | 内容 |
 |---|---|
-| [安装](setup/README.zh-CN.md) | 创建 Linux、固定版本下载、唯一环境与分析脚本 |
-| [物理背景](physics/README.zh-CN.md) | SMEFT、Warsaw basis、Wilson 系数、flavor、scheme、微分宽度 |
-| [软件与 Notebook](model/README.zh-CN.md) | SMEFTsim、MadGraph、ROOT 与 Mathematica 的分工 |
-| [过程与阶数](processes/README.zh-CN.md) | Restriction、振幅阶数与传播子修正 |
-| [参数](parameters/README.zh-CN.md) | 输入值、推导参数与完整静态索引 |
-| [图](figures/README.zh-CN.md) | 自己生成的 SM 与重加权图、单位与解释 |
-| [Linux 入门（可选）](linux-basics/README.zh-CN.md) | 基本命令、提示符、路径与回车约定 |
-| [本地辅助脚本](../scripts/README.zh-CN.md) | 修正本地教程绘图副本的显示效果 |
+| [安装](setup/README.zh-CN.md) | Linux 和统一运行环境 |
+| [双 muon 主线](handbook.zh-CN.md) | 硬散射、重加权、shower、探测器和图像 |
+| [Higgs 进阶](higgs.zh-CN.md) | 四体衰变与分项权重 |
+| [物理背景](physics/README.zh-CN.md) | SMEFT、Wilson 系数和衰变变量 |
+| [模型](model/README.zh-CN.md) | UFO、flavor、scheme 与 restriction |
+| [过程与阶数](processes/README.zh-CN.md) | 振幅阶数和原 Higgs 卡的含义 |
+| [参数](parameters/README.zh-CN.md) | 参数类别、单位及完整索引 |
+| [Higgs 图像说明](figures/README.zh-CN.md) | 原有四个变量、图例和宽度单位 |
+| [Linux 入门](linux-basics/README.zh-CN.md) | 终端、目录、编辑器和文件 |
+| [验证记录](validation.zh-CN.md) | 本次实际运行结果 |
+
+模型、过程和参数附录保留了原 Higgs 教程的详细背景；双 muon 主线的实际过程与卡以主教程和 `config` 为准。

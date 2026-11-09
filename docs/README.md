@@ -1,16 +1,20 @@
-# Topic notes
+# Tutorial and topic notes
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[简体中文](README.zh-CN.md) | [Project home](../README.md)
 
-Follow the [installation guide](setup/README.md) and [handbook](handbook.md) in order. Consult these notes when a topic needs more explanation.
+Complete the [dimuon workflow](handbook.md) from UFO to plots, then consult these notes as needed.
 
-| Guide | Contents |
+| Document | Contents |
 |---|---|
-| [Installation](setup/README.md) | Linux creation, pinned downloads, the single environment and analysis scripts |
-| [Physics](physics/README.md) | SMEFT, Warsaw basis, Wilson coefficients, flavor, input schemes and differential widths |
-| [Software and notebooks](model/README.md) | SMEFTsim, MadGraph, ROOT and Mathematica roles |
-| [Processes and orders](processes/README.md) | Restrictions, amplitude orders and propagator corrections |
-| [Parameters](parameters/README.md) | Input values, derived parameters and the complete static index |
-| [Figures](figures/README.md) | Locally generated SM and reweighting plots, units and interpretation |
-| [Linux basics (optional)](linux-basics/README.md) | Basic commands, prompts, paths and Enter-key conventions |
-| [Local helper script](../scripts/README.md) | Apply display fixes to the locally prepared tutorial plotter |
+| [Installation](setup/README.md) | Linux and the shared runtime |
+| [Dimuon workflow](handbook.md) | Hard events, reweighting, shower, detectors and plots |
+| [Advanced Higgs exercise](higgs.md) | Four-body decay and component weights |
+| [Physics](physics/README.md) | SMEFT, Wilson coefficients and decay variables |
+| [Model](model/README.md) | UFO, flavor, scheme and restrictions |
+| [Processes and orders](processes/README.md) | Amplitude orders and the original Higgs cards |
+| [Parameters](parameters/README.md) | Parameter categories, units and full index |
+| [Higgs figure guide](figures/README.md) | Original variables, legends and width units |
+| [Linux basics](linux-basics/README.md) | Terminals, directories, editors and files |
+| [Validation](validation.md) | Results from the completed local runs |
+
+The model, process and parameter notes retain the original Higgs tutorial's detailed background. For the dimuon process and actual cards, follow the main tutorial and `config`.

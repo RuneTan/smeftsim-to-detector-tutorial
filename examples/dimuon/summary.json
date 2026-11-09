@@ -1,0 +1,96 @@
+{
+  "generated_events": 1000,
+  "weight_labels": [
+    "nominal",
+    "sm_check",
+    "cHl3_plus",
+    "cHl3_minus"
+  ],
+  "inclusive_cross_section_pb": {
+    "nominal": 627.7219999999999,
+    "sm_check": 627.7219999999999,
+    "cHl3_plus": 560.5212996199999,
+    "cHl3_minus": 702.6335509899999
+  },
+  "selection": "pT > 10 GeV, |eta| < 2.4; two highest-pT muons; Delphes card isolation; Parnassus IsolationVar < 0.25",
+  "normalisation": "sum weights / generated events / bin width; pT counts individual muons",
+  "uncertainties": "per-event sumw2; EFT/SM ratio includes same-event covariance",
+  "stages": {
+    "Hard process": {
+      "events": 1000,
+      "selected_muons": 1948,
+      "selected_dimuon_events": 948,
+      "selected_cross_section_pb": {
+        "nominal": 595.0804559999998,
+        "sm_check": 595.0804559999998,
+        "cHl3_plus": 531.3077119400001,
+        "cHl3_minus": 666.17351608
+      },
+      "weighted_pair_acceptance": {
+        "nominal": 0.9479999999999998,
+        "sm_check": 0.9479999999999998,
+        "cHl3_plus": 0.9478813959437314,
+        "cHl3_minus": 0.9481094592499486
+      }
+    },
+    "Stable particles": {
+      "events": 1000,
+      "selected_muons": 1905,
+      "selected_dimuon_events": 906,
+      "selected_cross_section_pb": {
+        "nominal": 568.716132,
+        "sm_check": 568.716132,
+        "cHl3_plus": 507.49939019,
+        "cHl3_minus": 636.96994857
+      },
+      "weighted_pair_acceptance": {
+        "nominal": 0.9060000000000001,
+        "sm_check": 0.9060000000000001,
+        "cHl3_plus": 0.9054060756193464,
+        "cHl3_minus": 0.9065464461133675
+      }
+    },
+    "Delphes": {
+      "events": 1000,
+      "selected_muons": 1668,
+      "selected_dimuon_events": 704,
+      "selected_cross_section_pb": {
+        "nominal": 441.9162879999999,
+        "sm_check": 441.9162879999999,
+        "cHl3_plus": 394.43396533000004,
+        "cHl3_minus": 494.86209737999997
+      },
+      "weighted_pair_acceptance": {
+        "nominal": 0.704,
+        "sm_check": 0.704,
+        "cHl3_plus": 0.7036913059278974,
+        "cHl3_minus": 0.7042961394068742
+      }
+    },
+    "Parnassus": {
+      "events": 1000,
+      "selected_muons": 1765,
+      "selected_dimuon_events": 781,
+      "selected_cross_section_pb": {
+        "nominal": 490.2508819999999,
+        "sm_check": 490.2508819999999,
+        "cHl3_plus": 437.62756655,
+        "cHl3_minus": 548.93211015
+      },
+      "weighted_pair_acceptance": {
+        "nominal": 0.7809999999999999,
+        "sm_check": 0.7809999999999999,
+        "cHl3_plus": 0.7807510024091598,
+        "cHl3_minus": 0.7812494996525046
+      }
+    }
+  },
+  "source_sha256": {
+    "lhe": "75813220f792c2983786bbd9af3b089b69d76e7cefe37e96e88148e73d365642",
+    "hepmc": "0c73749f469c182d5179aad72cb9a952b3f88b7c75aed3def3659403a339d956",
+    "delphes": "067d2fbc8687185a3fa7d58ce056d7630d4b6c9de8affee6418c3d82b1fac844",
+    "parnassus": "c299c565d297e68a57d0e6e402e9fa1b2cddd855d2ee8f6e6674efbd670a46d3"
+  },
+  "histograms": 32,
+  "sm_reweight_max_relative_difference": 0.0
+}

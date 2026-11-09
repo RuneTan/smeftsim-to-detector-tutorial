@@ -1,0 +1,8 @@
+change mode LO
+change helicity False
+launch --rwgt_name=sm_check
+set cHl3 0
+launch --rwgt_name=cHl3_plus
+set cHl3 1
+launch --rwgt_name=cHl3_minus
+set cHl3 -1

@@ -28,7 +28,7 @@ The MIT license of the SMEFTsim model is not assumed to license the independent 
 Local tutorial downloads and author-derived Python files under `work/Material` are excluded from Git.
 Compatibility changes consist of tab expansion, Python 2 syntax conversion, `file()` to `open()`
 and the Python 3 interpreter line. The project's `scripts/fix_axes.py` additionally corrects local labels and layout and enables embedded PDF fonts, without changing histogram calculations. Preparation instructions are in the
-[working-copy guide](docs/setup/README.md#5-prepare-the-two-python-3-analysis-scripts).
+[working-copy guide](docs/setup/README.md).
 
 ## MadGraph and ROOT
 
@@ -60,3 +60,7 @@ It does not imply upstream endorsement, independent closure or full research val
 The bilingual teaching notes are this project's contribution.
 No project-wide reuse license has yet been selected.
 This notice does not relicense third-party content.
+
+## Integrated detector workflow
+
+The dimuon workflow combines the project-owned detector-learning helpers with the SMEFTsim teaching material. Pythia 8.316, Delphes 3.5.1 and Parnassus 0.1.0 are obtained from upstream; their source trees retain their licenses and attribution. The Parnassus exercise uses its parametric CMS response. Original detector source notes are retained in [detector sources](docs/detector-sources.md). The pinned install and local f2py/ROOT adapters are described in [installation](docs/setup/README.md).

@@ -1,0 +1,8 @@
+set auto_update 0 --no_save
+set auto_convert_model True --no_save
+import model ./work/Material/SMEFTsim_U35_MwScheme_UFO-massless
+define p = g u c d s u~ c~ d~ s~
+generate p p > mu+ mu- SMHLOOP=0 NP=1 NPprop=0
+display processes
+output work/dy
+quit

@@ -1,12 +1,10 @@
-# Teaching examples
+# Example results
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[简体中文](README.zh-CN.md) | [Project home](../README.md)
 
-This directory contains one locally generated and checked reweighted sample.
+| Example | Contents |
+|---|---|
+| [Complete dimuon workflow](dimuon/README.md) | Figures and numerical results from 1,000 SMEFTsim collisions through Pythia, Delphes and Parnassus |
+| [Higgs reweighting](reweighted/README.md) | Existing 2,000 decay events, 11 extra weights, 48 histograms and four PDFs |
 
-- [reweighted](reweighted/README.md): 2,000 SM base events, each with 11 extra weights.
-- [Figure guide](../docs/figures/README.md): the meaning of the plots.
-- `reweighted/metadata.json`: provenance, input settings and checksums.
-
-`reference` contains the reference results from Ilaria Brivio's 2023 tutorial; see the [reference guide](../docs/setup/README.md#7-extract-the-reference-results-and-continue).
-`examples` contains this project's own simulation output selected for sharing.
+Generate the main workflow data using the [tutorial](../docs/handbook.md). The Higgs example can also be used directly for the [analysis exercise](../docs/higgs.md).

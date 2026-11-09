@@ -1,23 +1,41 @@
-# Runtime directories are created locally, not distributed.
-/.venv/
-/.venv-linux/
-/.venv-root/
+# Local software and runtime data
+/.venv*/
 /tutorial/
 /tools/
 /work/
 /reference/
 /outputs/
+/out/
 /vm/
 /cards/
 /requirements*.txt
 /py.py
-# Publish only the project-owned helper and its documentation.
+/ME5_debug
+/check_sa_born_splitOrders.f
+/nsqso_born.inc
 /scripts/*
-!/scripts/fix_axes.py
 !/scripts/README.md
 !/scripts/README.zh-CN.md
-# Private owner records, migration backups and credentials.
+!/scripts/fix_axes.py
+!/scripts/env.sh
+!/scripts/interactive.sh
+!/scripts/setup.sh
+!/scripts/prepare_materials.py
+!/scripts/prepare_dy.py
+!/scripts/prepare_higgs.py
+!/scripts/lhe.py
+!/scripts/hepmc_io.py
+!/scripts/shower.py
+!/scripts/plot_dy.py
+!/scripts/test_analysis.py
+!/scripts/validate.py
+/bin/*
+!/bin/root-config
+!/bin/f2py
+/config/delphes_CMS.tcl
+# Private local records
 /.maintainer-notes/
+/.maintainer/
 /.local-secrets/
 Personal access tokens(classic).txt
 **/Personal access tokens(classic).txt
@@ -28,6 +46,7 @@ __pycache__/
 *.pyc
 *.lhe
 *.lhe.gz
+*.hepmc
 *.root
 *.log
 *.vhdx
@@ -35,3 +54,4 @@ __pycache__/
 *.tar.gz
 !examples/reweighted/events.lhe.gz
 !examples/reweighted/histograms.root
+!examples/dimuon/histograms.root
