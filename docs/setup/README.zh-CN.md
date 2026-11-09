@@ -27,7 +27,14 @@ sudo apt-get install -y --no-install-recommends build-essential gfortran git cur
 
 ## 3. 获取项目并安装软件
 
-已有本地整合项目时，直接 `cd ~/smeftsim`。首次从包含这版教程的仓库或本地副本开始时，将项目放在 Linux 主目录下。
+首次使用时，在 Linux 主目录获取教程：
+
+```bash
+cd ~
+git clone https://github.com/RuneTan/smeftsim-to-detector-tutorial.git smeftsim
+```
+
+已有本地整合项目时，直接进入下面的安装步骤。
 
 ```bash
 cd ~/smeftsim

@@ -2,7 +2,7 @@
 
 [简体中文](detector-sources.zh-CN.md)
 
-The teaching route draws on [smeftsim-learning](https://github.com/RuneTan/smeftsim-learning): stepwise inputs, an isolated environment, ROOT analysis, and small-sample checks before larger runs. It is a teaching reference, not an installation or runtime dependency.
+The detector material is integrated into the [complete tutorial](../README.md), sharing one learning route with SMEFTsim model import, event generation, reweighting and ROOT analysis.
 
 | Source | Version used here | Use in this tutorial |
 |---|---|---|

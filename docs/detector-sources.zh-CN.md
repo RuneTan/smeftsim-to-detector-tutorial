@@ -2,7 +2,7 @@
 
 [English](detector-sources.md)
 
-教学路线参考 [smeftsim-learning](https://github.com/RuneTan/smeftsim-learning) 的分步输入、隔离环境、ROOT 操作和“小样本先验证”方式。它是教学来源，不是安装或运行依赖。
+探测器部分已整合进 [完整教程](../README.zh-CN.md)，与 SMEFTsim 的模型导入、事件生成、重加权和 ROOT 分析共用一条学习路线。
 
 | 来源 | 本次使用 | 借鉴或用途 |
 |---|---|---|

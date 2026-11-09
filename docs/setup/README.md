@@ -27,7 +27,14 @@ Compilers build MadGraph and Delphes, Ghostscript supports Higgs PDF fonts, and 
 
 ## 3. Obtain the project and install its software
 
-With the local integrated project already present, enter `cd ~/smeftsim`. On a new system, place a repository checkout or local copy containing this tutorial version in your Linux home directory.
+On first use, obtain the tutorial in your Linux home directory:
+
+```bash
+cd ~
+git clone https://github.com/RuneTan/smeftsim-to-detector-tutorial.git smeftsim
+```
+
+If the integrated project is already present, continue with installation below.
 
 ```bash
 cd ~/smeftsim
