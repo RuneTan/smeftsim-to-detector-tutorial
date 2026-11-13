@@ -27,7 +27,7 @@ sudo apt-get install -y --no-install-recommends build-essential gfortran git cur
 
 ## 3. 获取项目并安装软件
 
-首次使用时，在 Linux 主目录获取教程：
+接下来的安装步骤用你的普通 Linux 账号执行。首次使用时把教程克隆到 Linux 主目录。这样在 WSL 中，项目会放在 Ubuntu 的文件系统上。
 
 ```bash
 cd ~
@@ -59,7 +59,9 @@ bash scripts/setup.sh
 
 完整 Python 依赖见 [config/requirements.lock.txt](../../config/requirements.lock.txt)。`bin/f2py` 把 MadGraph 的 Fortran 搜索路径传给 Python 3.12 使用的 Meson 编译接口；`bin/root-config` 对接 ROOT wheel 的编译路径。二者由环境入口自动使用。
 
-安装只需完成一次。后续打开终端直接加载环境即可。
+看到 `Ready. Run: source scripts/env.sh` 后再继续。如果下载中断，回到项目目录重新运行 `bash scripts/setup.sh`。以后打开终端时，按下一节加载环境即可。
+
+如果旧版安装的 Higgs 分析器报 `NameError: name 'file' is not defined`，更新教程仓库后重新运行 `bash scripts/setup.sh`，即可修复生成的分析器。
 
 ## 4. 每次进入项目
 

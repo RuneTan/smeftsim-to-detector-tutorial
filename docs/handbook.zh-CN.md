@@ -81,10 +81,9 @@ python tools/mg/bin/mg5_aMC config/dy_process.mg5
 
 ```bash
 python scripts/prepare_dy.py --events 1000 --seed 12345
-nano work/dy/Cards/param_card.dat
 ```
 
-准备脚本把导出卡里的 Wilson 系数设为零，并写入下面的运行设置。打开卡后可以直接查看；`Ctrl+X` 返回终端。用 `nano` 修改文件时，`Ctrl+O`、Enter 保存，再 `Ctrl+X` 退出。
+准备脚本把导出卡里的 Wilson 系数设为零，并写入下面的运行设置。想查看参数卡时，可以用 `nano work/dy/Cards/param_card.dat` 打开，按 `Ctrl+X` 返回 Bash。
 
 | 设置 | 本例数值 | 作用 |
 |---|---:|---|
@@ -175,6 +174,8 @@ tools/delphes/DelphesHepMC3 config/delphes_CMS.tcl out/dy/delphes.root out/dy/sh
 
 三个位置参数依次是：**卡、输出 ROOT、输入 HepMC**。输出树叫 `Delphes`；`Muon` 是完成重建和隔离选择后的 muon，`Particle` 保存生成器粒子记录。
 
+Delphes 要求输出文件尚不存在。重跑时可以换一个输出文件名，并把新路径传给 `plot_dy.py --delphes`，也可以先移走上一次的输出再重复原命令。
+
 这一步的重建对象可能少于输入稳定粒子，动量也会变化。树中仍有 1,000 行，每行对应一个事件；没有选中 muon 的事件也占一行。
 
 ## 7. 画出主线结果
@@ -201,7 +202,7 @@ $$\frac{1}{N\Delta x}\sum_{i\,\mathrm{in\ bin}} w_i,$$
 
 EFT/SM 比值的误差考虑同一事件上两种权重的相关性。换了参数点也不需要重复乘一次 SM 权重。
 
-WSL 中可用 `explorer.exe out/dy/plots` 打开文件夹；Linux 桌面直接用文件管理器打开。
+WSL 中可用 `explorer.exe "$(wslpath -w "$PWD/out/dy/plots")"` 打开文件夹。Linux 桌面可以用文件管理器打开。
 
 ## 8. 加入 Parnassus 比较
 
@@ -212,7 +213,7 @@ OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 parnassus run -c config/parnassus.yaml -i ou
 python scripts/plot_dy.py --parnassus out/dy/parnassus.root
 ```
 
-`-ne` 是事件数，`-bs` 是每批事件数。配置中的 `MuonIsolation` 计算隔离变量，分析时再要求 `Muons.IsolationVar<0.25`。图会增加 Parnassus 曲线；两个后端的事件编号都与原 LHE 核对。
+`-ne` 是事件数，`-bs` 是每批事件数。配置中的 `MuonIsolation` 计算隔离变量，分析时再要求 `Muons.IsolationVar<0.25`。这一步会刷新 `out/dy/plots`，并给前两组图加上 Parnassus 曲线。EFT/SM 图使用 Delphes 响应。两个后端的事件编号都与原 LHE 核对。
 
 两个 CMS 响应有各自的效率和分辨率实现，因此分布与通过选择的计数会不同。参考结果见 [示例](../examples/dimuon/README.zh-CN.md)。
 

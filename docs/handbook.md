@@ -81,10 +81,9 @@ In **Bash**:
 
 ```bash
 python scripts/prepare_dy.py --events 1000 --seed 12345
-nano work/dy/Cards/param_card.dat
 ```
 
-The helper sets the exported Wilson coefficients to zero and applies the run settings below. Read the card, then press `Ctrl+X` to return. When editing with `nano`, save using `Ctrl+O`, Enter, then exit with `Ctrl+X`.
+The helper sets the exported Wilson coefficients to zero and applies the run settings below. To inspect the parameter card, optionally open it with `nano work/dy/Cards/param_card.dat` and press `Ctrl+X` to return to Bash.
 
 | Setting | Value | Purpose |
 |---|---:|---|
@@ -175,6 +174,8 @@ tools/delphes/DelphesHepMC3 config/delphes_CMS.tcl out/dy/delphes.root out/dy/sh
 
 The positional arguments are **card, output ROOT, input HepMC**. The output tree is `Delphes`; `Muon` contains reconstructed, isolated muons, and `Particle` contains generator particles.
 
+Delphes requires a new output file. To repeat this step, give it a new filename and pass that path to `plot_dy.py --delphes`, or move the previous output before repeating the command.
+
 Reconstructed collections can contain fewer objects and shifted momenta. The tree still has 1,000 rows, one per event, including events with no selected muons.
 
 ## 7. Make the final plots
@@ -201,7 +202,7 @@ where $N$ is the total generated event count and $w_i$ is the corresponding norm
 
 EFT/SM ratio uncertainties include the correlation between the two weights of the same event. Do not multiply a target weight by the nominal SM weight again.
 
-In WSL, use `explorer.exe out/dy/plots` to open the folder; on a Linux desktop, use your file manager.
+In WSL, use `explorer.exe "$(wslpath -w "$PWD/out/dy/plots")"` to open the folder. On a Linux desktop, use your file manager.
 
 ## 8. Add the Parnassus comparison
 
@@ -212,7 +213,7 @@ OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 parnassus run -c config/parnassus.yaml -i ou
 python scripts/plot_dy.py --parnassus out/dy/parnassus.root
 ```
 
-`-ne` is the event count; `-bs` is the batch size. `MuonIsolation` computes an isolation variable, and analysis then requires `Muons.IsolationVar<0.25`. The plots gain a Parnassus curve. Both backends' event IDs are matched to the original LHE.
+`-ne` is the event count and `-bs` is the batch size. `MuonIsolation` computes an isolation variable, and analysis then requires `Muons.IsolationVar<0.25`. This refreshes `out/dy/plots` and adds a Parnassus curve to the first two figures. The EFT/SM figure uses the Delphes response. Both backends' event IDs are matched to the original LHE.
 
 The two CMS responses implement their own efficiencies and resolutions, so their distributions and selected counts differ. See the [example results](../examples/dimuon/README.md).
 

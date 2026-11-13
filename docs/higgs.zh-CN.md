@@ -122,3 +122,14 @@ cd ../../..
 ```
 
 本次整合同时重跑了新的 200 事件案例，并逐 bin 核对了原有 2,000 事件示例的 48 个直方图。详细结果见 [验证记录](validation.zh-CN.md)。
+
+## 8. 检查两个案例的产物
+
+跑完双 muon 教程的 Parnassus 对比和上面的两组 Higgs 分析后，在已经加载环境的项目根目录运行以下命令。
+
+```bash
+python scripts/test_analysis.py
+python scripts/validate.py
+```
+
+第一条运行四项分析测试。第二条检查教程中的事件数、权重和输出文件，比较 48 个 Higgs 参考直方图，并写出 `out/unified-validation/validation.json`。

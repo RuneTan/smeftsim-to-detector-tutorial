@@ -6,6 +6,7 @@ import json
 import re
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 import numpy as np
@@ -42,6 +43,8 @@ def main():
     weights = json.loads((root/'out/dy/weights.json').read_text())
     require(len(sample['events'])==weights['n_events']==report['generated_events']==1000,
             'Expected the completed 1,000-event main exercise.')
+    require(set(report['stages']) == {'Hard process', 'Stable particles', 'Delphes', 'Parnassus'},
+            'Run the main tutorial through the Parnassus comparison before validation.')
     require(all(v['events']==1000 for v in report['stages'].values()), 'A processing stage lost events.')
     require(report['sm_reweight_max_relative_difference'] < 1e-9, 'SM reweight mismatch.')
     dt = uproot.open(root/'out/dy/delphes.root')['Delphes']
@@ -66,7 +69,7 @@ def main():
     require(all(str(root/'.venv-unified') in line for line in ldd.splitlines() if '/ROOT/' in line),
             'ROOT libraries are not from the unified environment.')
     packages={name:metadata.version(name) for name in ['numpy','ROOT','pythia8mc','pyhepmc','torch','parnassus','meson','ninja']}
-    result={'date':'2026-11-09','python':sys.version.split()[0], 'ROOT_core':ROOT.gROOT.GetVersion(),
+    result={'date':date.today().isoformat(),'python':sys.version.split()[0], 'ROOT_core':ROOT.gROOT.GetVersion(),
             'packages':packages,'dimuon':report,
             'transfer_checks':weights['checks']+['Delphes nominal ROOT weights match LHE',
                 'both detector event-ID sets match LHE', 'Delphes links project-local ROOT'],
@@ -75,6 +78,7 @@ def main():
             'figure_sha256':{f.name:sha256(f) for f in (root/'out/dy/plots').glob('*.png')},
             'scope':'Local LO tutorial, fixed shower/response and widths; parametric Parnassus CMS response.'}
     destination=root/'out/unified-validation/validation.json'
+    destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps({'dimuon_events':1000,'higgs_events':200,'reference_histograms_exactly_equal':equal,
                       'python':sys.version.split()[0], 'record':str(destination)},indent=2))

@@ -27,7 +27,7 @@ Compilers build MadGraph and Delphes, Ghostscript supports Higgs PDF fonts, and 
 
 ## 3. Obtain the project and install its software
 
-On first use, obtain the tutorial in your Linux home directory:
+Run the rest of the setup as your regular Linux user. On first use, clone the tutorial into your Linux home directory. In WSL this places the project on Ubuntu's filesystem.
 
 ```bash
 cd ~
@@ -59,7 +59,9 @@ The script obtains uv and Python, creates `.venv-unified`, installs pinned depen
 
 The full Python lock file is [config/requirements.lock.txt](../../config/requirements.lock.txt). `bin/f2py` passes MadGraph's Fortran search paths to the Meson backend used on Python 3.12; `bin/root-config` adapts the ROOT wheel's build paths. Activation selects both automatically.
 
-Installation is a one-time step. On later visits, just load the environment.
+Wait for `Ready. Run: source scripts/env.sh` before continuing. If a download is interrupted, run `bash scripts/setup.sh` again from the project directory. On later visits, load the environment as shown below.
+
+If an earlier installation's Higgs analyzer reports `NameError: name 'file' is not defined`, update the tutorial checkout and rerun `bash scripts/setup.sh` to repair the generated analyzer.
 
 ## 4. Enter the project each time
 

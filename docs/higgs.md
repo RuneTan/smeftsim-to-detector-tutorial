@@ -122,3 +122,14 @@ cd ../../..
 ```
 
 Integration validation generated a new 200-event sample and compared all 48 histograms of the existing 2,000-event example bin by bin. See the [validation record](validation.md).
+
+## 8. Check both exercises
+
+After the dimuon tutorial through the Parnassus comparison and both Higgs runs above, run these from the project root with the environment loaded.
+
+```bash
+python scripts/test_analysis.py
+python scripts/validate.py
+```
+
+The first command runs four analysis tests. The second checks the documented event counts, weights and output files, compares the 48 reference Higgs histograms and writes `out/unified-validation/validation.json`.

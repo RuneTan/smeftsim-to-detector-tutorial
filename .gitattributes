@@ -6,6 +6,8 @@
 *.mg5 text eol=lf
 *.json text eol=lf
 *.txt text eol=lf
+/bin/f2py text eol=lf
+/bin/root-config text eol=lf
 *.gz binary
 *.root binary
 *.pdf binary

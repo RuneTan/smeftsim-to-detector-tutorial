@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Prepare local UFO/card copies and Python 3 versions of the author scripts."""
+import re
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 
 def main():
@@ -20,10 +22,19 @@ def main():
     for name in ['lhe_analyzer.py', 'plot_histos.py']:
         f = scripts/name
         if not f.exists():
-            f.write_text((source/name).read_text().expandtabs(8))
-            subprocess.run([sys.executable,'-m','lib2to3','-w','-n',str(f)], check=True)
-            s = f.read_text().replace('file(', 'open(')
-            f.write_text(s.replace('#!/usr/bin/env python\n', '#!/usr/bin/env python3\n',1))
+            with TemporaryDirectory(dir=scripts) as temporary:
+                copy = Path(temporary) / name
+                copy.write_text((source/name).read_text().expandtabs(8))
+                subprocess.run([sys.executable, '-m', 'lib2to3', '-w', '-n', str(copy)], check=True)
+                converted = copy.read_text().replace('#!/usr/bin/env python\n', '#!/usr/bin/env python3\n', 1)
+                copy.write_text(converted)
+                copy.replace(f)
+    # lib2to3 leaves the original spaced Python 2 file() call in the analyzer.
+    analyzer = scripts / 'lhe_analyzer.py'
+    converted = analyzer.read_text()
+    updated = re.sub(r'(?m)^([ \t]*ifile[ \t]*=[ \t]*)file[ \t]*(?=\()', r'\1open', converted)
+    if updated != converted:
+        analyzer.write_text(updated)
     subprocess.run([sys.executable,str(root/'scripts/fix_axes.py')],check=True)
     card = root/'config/delphes_CMS.tcl'
     if not card.exists():

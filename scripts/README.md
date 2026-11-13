@@ -22,4 +22,4 @@ python scripts/test_analysis.py
 python scripts/validate.py
 ```
 
-Run the second command after completing the main tutorial, the new Higgs sample and the original reference analysis. It writes `out/unified-validation/validation.json`.
+Run the second command after completing the main tutorial through the Parnassus comparison, the new Higgs sample and the original reference analysis. It writes `out/unified-validation/validation.json`.

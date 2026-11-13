@@ -22,4 +22,4 @@ python scripts/test_analysis.py
 python scripts/validate.py
 ```
 
-第二条命令在主教程、Higgs 新样本及原示例分析都完成后运行；结果写入 `out/unified-validation/validation.json`。
+第二条命令在完成主教程的 Parnassus 对比、Higgs 新样本及原示例分析后运行，结果写入 `out/unified-validation/validation.json`。
